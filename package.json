@@ -1,7 +1,11 @@
 {
-  "name": "shared-ui",
-  "version": "1.0.1",
-  "main": "src/index.js",
+  "name": "seis-ui",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
