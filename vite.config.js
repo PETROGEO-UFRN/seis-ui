@@ -3,6 +3,13 @@ import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import path from 'path';
 
+import pkg from './package.json';
+
+const externalPackages = [
+  ...Object.keys(pkg.dependencies || {}),
+  ...Object.keys(pkg.peerDependencies || {}),
+];
+
 export default defineConfig({
   plugins: [
     react(),
@@ -14,7 +21,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'shared-ui',
+      name: 'seis-ui',
       formats: ['es', 'cjs'],
       fileName: (format, name) => {
         if (format === 'es')
@@ -24,11 +31,12 @@ export default defineConfig({
     },
     rollupOptions: {
       external: (id) => {
-        console.log({ id })
-        return id.includes('node_modules') ||
-          id.includes('react') ||
-          id.includes('_virtual') ||
-          id.includes(0)
+        if (id.startsWith('.') || path.isAbsolute(id))
+          return false;
+
+        return externalPackages.some(
+          (pkgName) => id === pkgName || id.startsWith(`${pkgName}/`)
+        );
       },
       output: {
         preserveModules: true,
