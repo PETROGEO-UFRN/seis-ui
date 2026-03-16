@@ -56,6 +56,18 @@ export const WithUpdate: Story = {
   },
 };
 
+export const WithExtraActionButton: Story = {
+  args: {
+    labelText: 'Label',
+    onRemove: () => action('Clicked delete!'),
+    onUpdate: () => action('Clicked update!'),
+    ExtraActionButton: <button onClick={() => action('Clicked extra action!')}>Custom</button>,
+  },
+  parameters: {
+    isSmallBox: true,
+  },
+};
+
 export const OnTreeItemExamples: Story = {
   args: {
     labelText: 'Label',

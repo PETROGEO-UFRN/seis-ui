@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { ReactNode } from "react";
 import { useDebounce } from "use-debounce"
 import CircularProgress from '@mui/material/CircularProgress';
 import IconButton from "@mui/material/IconButton";
@@ -13,14 +14,16 @@ import {
 
 interface ILabelContentProps {
   labelText: string
+  ExtraActionButton?: ReactNode
   onRemove?(): void
   onUpdate?(newName: string): void
 }
 
 export default function TreeItemLabelWithActions({
   labelText,
+  ExtraActionButton,
   onRemove,
-  onUpdate
+  onUpdate,
 }: ILabelContentProps) {
   const [isLoadingUpdate, setIsLoadingUpdate] = useState(false)
   const [labelTextEditing, setLabelTextEditing] = useState(labelText)
@@ -55,6 +58,7 @@ export default function TreeItemLabelWithActions({
       />
 
       <ActionsBox>
+        {ExtraActionButton && ExtraActionButton}
         {onUpdate && (
           <IconButton
             size="small"
