@@ -14,6 +14,7 @@ import {
 
 interface ILabelContentProps {
   labelText: string
+  href?: string
   ExtraActionButton?: ReactNode
   onRemove?(): void
   onUpdate?(newName: string): void
@@ -21,6 +22,7 @@ interface ILabelContentProps {
 
 export default function TreeItemLabelWithActions({
   labelText,
+  href,
   ExtraActionButton,
   onRemove,
   onUpdate,
@@ -40,7 +42,7 @@ export default function TreeItemLabelWithActions({
   }, [labelTextDebounced])
 
   return (
-    <Container>
+    <Container {...(href ? { component: "a", href } : {})}>
       {isLoadingUpdate && <CircularProgress size={16} />}
       <CustomTextField
         id={`label-${labelText}`}

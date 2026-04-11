@@ -56,6 +56,17 @@ export const WithUpdate: Story = {
   },
 };
 
+export const WithHref: Story = {
+  args: {
+    labelText: 'Label',
+    href: 'https://example.com',
+    onRemove: () => action('Clicked delete!'),
+  },
+  parameters: {
+    isSmallBox: true,
+  },
+};
+
 export const WithExtraActionButton: Story = {
   args: {
     labelText: 'Label',
