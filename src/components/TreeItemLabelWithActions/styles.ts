@@ -8,11 +8,18 @@ interface ICustomTextFieldProps {
 
 export const Container = styled(Box)`
   && {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    text-decoration: none;
   }
+`
+
+export const StretchedLink = styled.a`
+  z-index: 1;
+  position: absolute;
+  inset: 0;
+  text-decoration: none;
 `
 
 export const CustomTextField = styled(TextField) <ICustomTextFieldProps>`
@@ -28,6 +35,8 @@ export const CustomTextField = styled(TextField) <ICustomTextFieldProps>`
 `
 
 export const ActionsBox = styled(Box)`
+  z-index: 10;
+  position: relative;
   display: flex;
   gap: 4px;
 `

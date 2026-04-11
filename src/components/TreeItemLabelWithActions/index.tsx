@@ -8,6 +8,7 @@ import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRena
 import DeleteButton from "../DeleteButton";
 import {
   Container,
+  StretchedLink,
   ActionsBox,
   CustomTextField,
 } from "./styles"
@@ -42,8 +43,8 @@ export default function TreeItemLabelWithActions({
   }, [labelTextDebounced])
 
   return (
-    <Container {...(href ? { component: "a", href } : {})}>
-      {isLoadingUpdate && <CircularProgress size={16} />}
+    <Container>
+      {href && <StretchedLink href={href} />}
       <CustomTextField
         id={`label-${labelText}`}
         type="text"
