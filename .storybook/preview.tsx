@@ -1,9 +1,11 @@
-import type { Preview } from '@storybook/react';
+import type { Preview, StoryContext } from '@storybook/react';
 import { ThemeProvider, CssBaseline, createTheme } from '@mui/material';
 
 const theme = createTheme();
 
-const StoryWrapper = (Story, context) => {
+import React from 'react';
+
+const StoryWrapper = (Story: React.ElementType, context: StoryContext) => {
   const isSmallBox = context.parameters?.isSmallBox ?? false;
 
   return (

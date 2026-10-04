@@ -37,7 +37,7 @@ export default function FileSelector({
       </FormLabel>
       <Select
         value={selectedFileLinkId}
-        onChange={(event) => onSubmitFileLinkUpdate(event.target.value)}
+        onChange={(event) => onSubmitFileLinkUpdate(Number(event.target.value))}
         size={size}
       >
         {fileLinks.map((fileLink) =>

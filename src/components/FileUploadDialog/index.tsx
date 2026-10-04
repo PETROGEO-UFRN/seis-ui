@@ -20,7 +20,7 @@ export default function FileUploadDialog({
   setOpen,
   uploadNewFile,
 }: IFileUploadDialogProps) {
-  const [file, setFile] = useState<any>(null)
+  const [file, setFile] = useState<File | null>(null)
 
   const saveNewFile = () => {
     if (!file)
