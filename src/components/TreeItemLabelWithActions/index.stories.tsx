@@ -8,21 +8,26 @@ import TreeItemLabelWithActions from './';
 
 type Story = StoryObj<typeof TreeItemLabelWithActions>;
 
+import type { IconButtonProps } from "@mui/material/IconButton";
+
 // *** Default story to show update option in action ***
 interface ITreeItemLabelWithActionsStory {
   labelText?: string
   onUpdate?: undefined | (() => void)
+  actionsColor?: IconButtonProps["color"]
 }
 
 function TreeItemLabelWithActionsStory({
   labelText = "Label",
   onUpdate = undefined,
+  actionsColor,
 }: ITreeItemLabelWithActionsStory) {
   return (
     <TreeItemLabelWithActions
       labelText={labelText}
       onRemove={() => action('Clicked delete!')}
       onUpdate={onUpdate}
+      actionsColor={actionsColor}
     />
   )
 }
@@ -31,6 +36,12 @@ function TreeItemLabelWithActionsStory({
 const meta: Meta<typeof TreeItemLabelWithActions> = {
   title: 'Components/TreeItemLabelWithActions',
   component: TreeItemLabelWithActions,
+  argTypes: {
+    actionsColor: {
+      control: 'select',
+      options: ['inherit', 'default', 'primary', 'secondary', 'error', 'info', 'success', 'warning'],
+    },
+  },
 };
 
 export default meta;
@@ -113,7 +124,7 @@ export const OnTreeItemExamplesWithUpdate: Story = {
     isSmallBox: true,
   },
   decorators: [
-    (Story) => (
+    (Story, { args }) => (
       <SimpleTreeView>
         <TreeItem
           itemId="1"
@@ -121,6 +132,7 @@ export const OnTreeItemExamplesWithUpdate: Story = {
             <TreeItemLabelWithActionsStory
               labelText='Label 1'
               onUpdate={() => action('Clicked update!')}
+              actionsColor={args.actionsColor}
             />
           }
         >
@@ -130,6 +142,7 @@ export const OnTreeItemExamplesWithUpdate: Story = {
               <TreeItemLabelWithActionsStory
                 labelText='Label 2'
                 onUpdate={() => action('Clicked update!')}
+                actionsColor={args.actionsColor}
               />
             }
           />
@@ -139,6 +152,7 @@ export const OnTreeItemExamplesWithUpdate: Story = {
               <TreeItemLabelWithActionsStory
                 labelText='Label 3'
                 onUpdate={() => action('Clicked update!')}
+                actionsColor={args.actionsColor}
               />
             }
           />
