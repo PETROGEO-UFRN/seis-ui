@@ -31,12 +31,14 @@ export const CustomTextField = styled(TextField) <ICustomTextFieldProps>`
     border: none;
   }
   pointer-events: none;
-  width: calc(100% - 72px ${({ $isLoadingUpdate }) => $isLoadingUpdate && " - 24px"} );
+  flex-grow: 1;
 `
 
 export const ActionsBox = styled(Box)`
   z-index: 10;
   position: relative;
   display: flex;
+  align-items: center;
   gap: 4px;
+  flex-shrink: 0;
 `

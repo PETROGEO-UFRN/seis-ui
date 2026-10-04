@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { useDebounce } from "use-debounce"
 import IconButton from "@mui/material/IconButton";
+import type { IconButtonProps } from "@mui/material/IconButton";
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
 
 import DeleteButton from "../DeleteButton";
@@ -15,17 +16,19 @@ import {
 interface ILabelContentProps {
   labelText: string
   href?: string
-  ExtraActionButton?: ReactNode
+  ExtraActions?: ReactNode
   onRemove?(): void
   onUpdate?(newName: string): void
+  actionsColor?: IconButtonProps["color"]
 }
 
 export default function TreeItemLabelWithActions({
   labelText,
   href,
-  ExtraActionButton,
+  ExtraActions,
   onRemove,
   onUpdate,
+  actionsColor = "primary",
 }: ILabelContentProps) {
   const [isLoadingUpdate, setIsLoadingUpdate] = useState(false)
   const [labelTextEditing, setLabelTextEditing] = useState(labelText)
@@ -60,17 +63,17 @@ export default function TreeItemLabelWithActions({
       />
 
       <ActionsBox>
-        {ExtraActionButton && ExtraActionButton}
+        {ExtraActions && ExtraActions}
         {onUpdate && (
           <IconButton
             size="small"
+            color={actionsColor}
             onClick={(event) => event.stopPropagation()}
             component="label"
             htmlFor={`label-${labelText}`}
             sx={{ zIndex: 1000 }}
           >
             <DriveFileRenameOutlineRoundedIcon
-              color="primary"
               fontSize="small"
             />
           </IconButton>

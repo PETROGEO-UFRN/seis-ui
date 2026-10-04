@@ -67,12 +67,12 @@ export const WithHref: Story = {
   },
 };
 
-export const WithExtraActionButton: Story = {
+export const WithExtraActions: Story = {
   args: {
     labelText: 'Label',
     onRemove: () => action('Clicked delete!'),
     onUpdate: () => action('Clicked update!'),
-    ExtraActionButton: <button onClick={() => action('Clicked extra action!')}>Custom</button>,
+    ExtraActions: <button onClick={() => action('Clicked extra action!')}>Custom</button>,
   },
   parameters: {
     isSmallBox: true,
